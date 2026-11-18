@@ -264,5 +264,17 @@
 
     render();
   </script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js")
+        .then(() => console.log("OnlyPhones PWA готов"))
+        .catch(error => console.error("Ошибка PWA:", error));
+    });
+  }
+</script>
+
+
 </body>
 </html>
