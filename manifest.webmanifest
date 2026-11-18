@@ -1,0 +1,13 @@
+
+{
+  "name": "OnlyPhones Apps",
+  "short_name": "OnlyPhones",
+  "description": "Каталог приложений для iPhone",
+  "start_url": "/OnlyPhonesApps/",
+  "scope": "/OnlyPhonesApps/",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#007aff",
+  "lang": "ru",
+  "icons": []
+}
