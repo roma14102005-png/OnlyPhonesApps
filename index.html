@@ -1,61 +1,263 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OnlyPhones Apps</title>
-<style>
-body {
-  font-family: -apple-system, sans-serif;
-  background: #f4f5f7;
-  margin: 0;
-  padding: 25px;
-}
-h1 { text-align: center; }
-.subtitle { text-align: center; color: #777; }
-.app {
-  background: white;
-  padding: 18px;
-  margin: 12px 0;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-button {
-  background: #007aff;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 15px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="OnlyPhones">
+  <title>OnlyPhones Apps</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+    .container {
+      max-width: 650px;
+      margin: auto;
+      padding: 28px 18px 100px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .logo {
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, #007aff, #6554ff);
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 27px;
+      font-weight: 800;
+    }
+    h1 { margin: 0; font-size: 25px; }
+    .subtitle { color: #7b8496; font-size: 13px; margin-top: 4px; }
+    .search {
+      width: 100%;
+      border: 1px solid #e5e9f0;
+      border-radius: 16px;
+      background: white;
+      padding: 16px;
+      font-size: 16px;
+      outline: none;
+      margin-bottom: 20px;
+    }
+    .search:focus { border-color: #007aff; }
+    .filters { display: flex; gap: 8px; margin-bottom: 24px; }
+    .filter {
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 20px;
+      background: #e9edf5;
+      color: #536077;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .filter.active { background: #007aff; color: white; }
+    h2 { font-size: 20px; margin: 0 0 14px; }
+    .app {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border: 1px solid #edf0f5;
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .app-icon {
+      width: 54px;
+      height: 54px;
+      flex-shrink: 0;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      font-size: 20px;
+    }
+    .details { flex: 1; min-width: 0; }
+    .name { font-size: 16px; font-weight: 700; }
+    .category { font-size: 12px; color: #8791a1; margin-top: 5px; }
+    .action {
+      background: #007aff;
+      color: white;
+      text-decoration: none;
+      padding: 10px 13px;
+      border-radius: 18px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .action.disabled { background: #e8edf4; color: #929cac; }
+    .empty { color: #8791a1; text-align: center; padding: 35px 0; }
+    .footer {
+      text-align: center;
+      color: #9ba4b2;
+      font-size: 12px;
+      margin-top: 35px;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-around;
+      background: rgba(255,255,255,.95);
+      border-top: 1px solid #e9edf5;
+      padding: 13px 10px calc(13px + env(safe-area-inset-bottom));
+    }
+    .bottom-nav a { color: #007aff; text-decoration: none; font-size: 13px; font-weight: 600; }
+  </style>
 </head>
 <body>
-<h1>📱 OnlyPhones Apps</h1>
-<p class="subtitle">Каталог приложений для iPhone</p>
+  <main class="container">
+    <header>
+      <div class="logo">O</div>
+      <div>
+        <h1>OnlyPhones Apps</h1>
+        <div class="subtitle">Каталог приложений для iPhone</div>
+      </div>
+    </header>
 
-<div class="app">
-  <strong>Сбербанк</strong>
+    <input id="search" class="search" type="search"
+      placeholder="🔍 Поиск приложений..." aria-label="Поиск приложений">
 
-<a href="https://online.sberbank.ru/" target="_blank" rel="noopener noreferrer"><button>Открыть</button></a>
+    <div class="filters">
+      <button class="filter active" data-category="Все">Все</button>
+      <button class="filter" data-category="Финансы">Финансы</button>
+      <button class="filter" data-category="Другое">Другое</button>
+    </div>
 
-</div>
-<div class="app">
-  <strong>Т-Банк</strong>
-  
-<a href="https://www.tbank.ru/bank/help/interfaces/bank-app/get/login/" target="_blank" rel="noopener noreferrer"><button>Установить</button></a>
+    <h2>Приложения</h2>
+    <div id="apps"></div>
+    <p id="empty" class="empty" hidden>Приложения не найдены</p>
 
-</div>
-<div class="app">
-  <strong>Лукойл</strong>
-  <button disabled>Скоро</button>
-</div>
-<div class="app">
-  <strong>VK</strong>
-  <button disabled>Скоро</button>
-</div>
+    <div class="footer">OnlyPhones Apps · Тестовая версия</div>
+  </main>
 
-<p class="subtitle">Тестовая версия OnlyPhones Apps</p>
+  <nav class="bottom-nav">
+    <a href="#apps">⌂ Каталог</a>
+    <a href="#" id="searchLink">⌕ Поиск</a>
+  </nav>
+
+  <script>
+    const apps = [
+      {
+        name: "Сбербанк",
+        category: "Финансы",
+        color: "#19a85b",
+        symbol: "С",
+        button: "Открыть",
+        url: "https://online.sberbank.ru/"
+      },
+      {
+        name: "Т-Банк",
+        category: "Финансы",
+        color: "#f4c900",
+        symbol: "Т",
+        button: "Инструкция",
+        url: "https://www.tbank.ru/bank/help/interfaces/bank-app/get/login/"
+      },
+      {
+        name: "Лукойл",
+        category: "Другое",
+        color: "#d92525",
+        symbol: "Л",
+        button: "Скоро",
+        url: null
+      },
+      {
+        name: "VK",
+        category: "Другое",
+        color: "#0077ff",
+        symbol: "VK",
+        button: "Скоро",
+        url: null
+      }
+    ];
+
+    const list = document.getElementById("apps");
+    const search = document.getElementById("search");
+    const empty = document.getElementById("empty");
+    let selectedCategory = "Все";
+
+    function render() {
+      const query = search.value.trim().toLocaleLowerCase("ru");
+      list.replaceChildren();
+
+      const filtered = apps.filter(app =>
+        (selectedCategory === "Все" || app.category === selectedCategory) &&
+        app.name.toLocaleLowerCase("ru").includes(query)
+      );
+
+      empty.hidden = filtered.length > 0;
+
+      filtered.forEach(app => {
+        const card = document.createElement("div");
+        card.className = "app";
+
+        const icon = document.createElement("div");
+        icon.className = "app-icon";
+        icon.style.background = app.color;
+        icon.textContent = app.symbol;
+
+        const details = document.createElement("div");
+        details.className = "details";
+
+        const name = document.createElement("div");
+        name.className = "name";
+        name.textContent = app.name;
+
+        const category = document.createElement("div");
+        category.className = "category";
+        category.textContent = app.category;
+
+        details.append(name, category);
+
+        const action = document.createElement(app.url ? "a" : "span");
+        action.className = "action" + (app.url ? "" : " disabled");
+        action.textContent = app.button;
+
+        if (app.url) {
+          action.href = app.url;
+          action.target = "_blank";
+          action.rel = "noopener noreferrer";
+        }
+
+        card.append(icon, details, action);
+        list.append(card);
+      });
+    }
+
+    search.addEventListener("input", render);
+
+    document.querySelectorAll(".filter").forEach(button => {
+      button.addEventListener("click", () => {
+        selectedCategory = button.dataset.category;
+        document.querySelectorAll(".filter").forEach(item =>
+          item.classList.toggle("active", item === button)
+        );
+        render();
+      });
+    });
+
+    document.getElementById("searchLink").addEventListener("click", event => {
+      event.preventDefault();
+      search.focus();
+    });
+
+    render();
+  </script>
 </body>
 </html>
